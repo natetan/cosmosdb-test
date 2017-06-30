@@ -97,8 +97,26 @@ namespace cosmosdbtest
 				},
 			};
 
-			Document document1 = await CreateDocument(client, document1Definition);
-			Console.WriteLine("Created document {0} from dynamic object", document1.Id);
+			dynamic airlineExampleDocument = new
+			{
+				Status = "0",
+				AirlineName = "00",
+				DSOFlashLines = new[] // this is an array of DSOFlashLines and would have more items 
+					{
+						new
+						{
+							FlashTime = "2017-06-30T10:02:41",
+							AirLineId = "OO",
+							MessageKeyId = 1,
+							MessageKey = "XLS",
+							Value = "NONE",
+							UserId = "BATCH"
+						},
+					},
+			};
+
+			Document doc = await CreateDocument(client, airlineExampleDocument);
+			Console.WriteLine("Created document {0} from dynamic object", doc.Id);
 			Console.WriteLine();
 		}
 
