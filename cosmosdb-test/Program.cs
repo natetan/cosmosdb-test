@@ -64,9 +64,9 @@ namespace cosmosdbtest
 				collection = client.CreateDocumentCollectionQuery(database.CollectionsLink,
 				   "SELECT * FROM c WHERE c.id = 'families'").AsEnumerable().First();
 
-				// await CreateDocuments(client);
+				await CreateDocuments(client);
 				// await QueryDocumentsWithPaging(client);
-				await ReplaceDocuments(client);
+				// await ReplaceDocuments(client);
                 // await ReadDocument();
 			
 			}
@@ -81,8 +81,7 @@ namespace cosmosdbtest
 
 			dynamic document1Definition = new
 			{
-				name = "Caludio Falcon",
-				id = "FalconFamily",
+				name = "Testing NO ID",
 				alias = "The Falcon",
 				address = new
 				{
