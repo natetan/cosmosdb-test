@@ -1,6 +1,7 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.14
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cosmosdb-test", "cosmosdb-test\cosmosdb-test.csproj", "{4E05BE8F-BE4A-473D-BE88-3F1ECFCF8FE9}"
 EndProject
 Global
@@ -13,5 +14,8 @@ Global
 		{4E05BE8F-BE4A-473D-BE88-3F1ECFCF8FE9}.Debug|x86.Build.0 = Debug|x86
 		{4E05BE8F-BE4A-473D-BE88-3F1ECFCF8FE9}.Release|x86.ActiveCfg = Release|x86
 		{4E05BE8F-BE4A-473D-BE88-3F1ECFCF8FE9}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal

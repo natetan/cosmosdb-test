@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,8 +65,10 @@ namespace cosmosdbtest
 				   "SELECT * FROM c WHERE c.id = 'families'").AsEnumerable().First();
 
 				// await CreateDocuments(client);
-				await QueryDocumentsWithPaging(client);
-				QueryDocumentsWithLinq(client);
+				// await QueryDocumentsWithPaging(client);
+				await ReplaceDocuments(client);
+                // await ReadDocument();
+			
 			}
 		}
 
@@ -79,17 +81,19 @@ namespace cosmosdbtest
 
 			dynamic document1Definition = new
 			{
-				name = "New Customer 1",
+				name = "Caludio Falcon",
+				id = "FalconFamily",
+				alias = "The Falcon",
 				address = new
 				{
-					addressType = "Main Office",
-					addressLine1 = "123 Main Street",
+					addressType = "Regular House",
+					addressLine1 = "123 Danger Street",
 					location = new
 					{
-						city = "Brooklyn",
+						city = "The Bronx",
 						stateProvinceName = "New York"
 					},
-					postalCode = "11229",
+					postalCode = "10454",
 					countryRegionName = "United States"
 				},
 			};
@@ -116,10 +120,10 @@ namespace cosmosdbtest
 			Console.WriteLine();
 			Console.WriteLine("**** Query Documents (paged results) ****");
 			Console.WriteLine();
-			Console.WriteLine("Querying for all documents");
+			Console.WriteLine("Querying documents");
 
             // select * from c where c.id = "AndersenFamily" would return the document that has this specific id
-			var sql = "SELECT * FROM c";
+			var sql = "SELECT * FROM c where c.address.location.city = 'Brooklyn'";
 			var query = client.CreateDocumentQuery(collection.SelfLink, sql).AsDocumentQuery();
 
 			while (query.HasMoreResults)
@@ -128,7 +132,7 @@ namespace cosmosdbtest
 
 				foreach (var document in documents)
 				{
-					Console.WriteLine(" Id: {0}; Name: {1};", document.id, document.name);
+					Console.WriteLine(" Id: {0};", document.id);
 				}
 			}
 
@@ -149,7 +153,7 @@ namespace cosmosdbtest
 
 			Console.WriteLine("Documents with 'isNew' flag: {0} ", documents.Count);
 			Console.WriteLine();
-			Console.WriteLine("Quering for documents to be updated");
+			Console.WriteLine("Querying for documents to be updated");
 
 			sql = "SELECT * FROM c";
 			documents = client.CreateDocumentQuery(collection.SelfLink, sql).ToList();
