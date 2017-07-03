@@ -155,7 +155,7 @@ namespace cosmosdbtest
 			}
 
 			Console.WriteLine();
-	  Console.WriteLine("Query has finished.");
+			Console.WriteLine("Query has finished.");
 		}
 
 		// Reading from a document
@@ -163,11 +163,12 @@ namespace cosmosdbtest
 			Console.WriteLine();
 			Console.WriteLine(">>> Reading from document with id of " + documentId + " <<<");
 			Console.WriteLine();
-	  var sql = "SELECT * from c where c.id = {documentId}";
-	  var document = client.CreateDocumentQuery(collection.SelfLink, sql);
-	  Console.WriteLine("Document toString: " + document.ToString());
-	  String content = JsonConvert.SerializeObject(document);
-	  Console.WriteLine("Json content: " + content);
+			// Inserting documentId parameter here does not seem to work 
+			var sql = "SELECT * from c where c.id = ParkerFamily";
+			var document = client.CreateDocumentQuery(collection.SelfLink, sql);
+			Console.WriteLine("Document toString: " + document.ToString());
+			String content = JsonConvert.SerializeObject(document);
+			Console.WriteLine("Json content: " + content);
 		}
 
 		// Updating the documents
