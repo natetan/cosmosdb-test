@@ -165,7 +165,8 @@ namespace cosmosdbtest
 			Console.WriteLine();
 
 			// Inserting documentId parameter here does not seem to work 
-			var sql = "SELECT * from c where c.id = 'ParkerFamily'";
+			// var sql = "SELECT * from c where c.id = 'ParkerFamily'";
+			var sql = "Select * from c where c.AirlineName = '00'";
 			var document = client.CreateDocumentQuery(collection.SelfLink, sql);
 			Console.WriteLine("Document toString: " + document.ToString());
 			String content = JsonConvert.SerializeObject(document);
@@ -177,8 +178,14 @@ namespace cosmosdbtest
 			// The ParkerFaily example is inside an array of length 1, so we have to use the array notation to access
 			// the first element, and then grab its data
 			dynamic results = JsonConvert.DeserializeObject<dynamic>(content);
-			Console.WriteLine("Document ID: " + results[0].id);
-			Console.WriteLine("Name: " + results[0].name);
+
+	  /* Testing the read with the families*/
+	  // Console.WriteLine("Document ID: " + results[0].id);
+	  // Console.WriteLine("Name: " + results[0].name);
+
+	  /* Testing the read with the airline example*/
+	  Console.WriteLine("MessageKey: " + results[0].DSOFlashLines[0].MessageKey);
+	  Console.WriteLine("Value: " + results[0].DSOFlashLines[0].Value);
 		}
 
 		// Updating the documents
